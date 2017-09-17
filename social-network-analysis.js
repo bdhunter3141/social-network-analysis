@@ -63,12 +63,25 @@ const listFollowers = function(cb) {
   }
 }
 
-listFollowers(followsMe);
+// listFollowers(followsMe);
 
 // Identify who follows the most people
 
+const followsMost = function() {
+  let followArr = [];
+  for (let person in data) {
+    let nameAndFollowNumber = [];
+    nameAndFollowNumber.push(data[person].name);
+    nameAndFollowNumber.push((data[person].follows).length);
+    followArr.push(nameAndFollowNumber);
+  }
+  followArr.sort((a, b) => {
+    return b[1] - a[1];
+  });
+  console.log(followArr[0][0], "follows the most people.");
+}
 
-
+followsMost();
 
 // Identify who has the most followers
 
