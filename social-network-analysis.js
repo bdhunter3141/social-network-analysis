@@ -34,6 +34,15 @@ var data = {
 
 // List everyone and for each of them, list the names of who they follow and who follows them
 
+const listNames = function(arr) {
+  let nameList = "";
+  for (let id of arr) {
+    nameList += data[id].name + ", ";
+  }
+  return nameList.slice(0, -2);
+}
+
+
 const followsMe = function(person) {
   let followerArr = [];
   for (let follower in data) {
@@ -49,8 +58,8 @@ const followsMe = function(person) {
 const listFollowers = function(cb) {
   for (let person in data) {
     console.log("Name: ", data[person].name);
-    console.log("Follows: ", data[person].follows);
-    console.log("Followers: ", cb(person));
+    console.log("Follows: ", listNames(data[person].follows));
+    console.log("Followers: ", listNames(cb(person)));
   }
 }
 
